@@ -32,7 +32,6 @@ Nexus Tracker runs quietly in your system tray, silently watching which applicat
 - [Download](#-download)
 - [Installation](#-installation)
 - [Configuration](#-configuration)
-- [Code Review Notes](#-code-review-notes)
 - [Roadmap](#-roadmap)
 - [Contributors](#-contributors)
 - [License](#-license)
@@ -262,20 +261,6 @@ Settings live in `config/settings.json` and can also be edited from the in-app *
 | `idle_threshold_seconds` | `300` | Seconds of inactivity before tracking pauses |
 | `poll_interval_seconds` | `5` | How often the active window is checked/logged |
 | `autostart` | `true` | Whether the app launches automatically with Windows |
-
----
-
-## 🔍 Code Review Notes
-
-The full codebase was reviewed file by file and compiles cleanly with **no syntax errors**. A few points worth flagging:
-
-1. **Duplicate refresh loops on filter switch** — `ui/main_window.py → _on_filter()`
-   Selecting *Today*, *Yesterday*, or *This Week* manually calls `self._refresh()`, even though `_refresh()` already reschedules itself every 10 seconds via `root.after()`. Each filter click therefore stacks an additional recurring refresh loop on top of the existing one(s), which can lead to redundant table rebuilds and unnecessary CPU/DB work the longer a session runs.
-   **Recommended fix:** store the `after()` job id and cancel it with `root.after_cancel()` before scheduling a new one, or simply drop the manual `_refresh()` call and let the existing 10-second cycle pick up the new filter.
-
-2. **Windows-only by design** — `autostart.py`, `core/idle_detector.py`, and `core/icons.py` are tightly coupled to Windows-only APIs. Cross-platform support would require swapping these for OS-agnostic equivalents (e.g. `pynput` for idle detection).
-
-3. **Minor unused import** — `core/productivity.py` imports `AppSession` from `storage.models` without using it. Harmless, but safe to remove.
 
 ---
 
