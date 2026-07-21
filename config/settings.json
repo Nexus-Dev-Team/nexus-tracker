@@ -1,0 +1,5 @@
+{
+  "idle_threshold_seconds": 300,
+  "poll_interval_seconds": 5,
+  "autostart": true
+}
