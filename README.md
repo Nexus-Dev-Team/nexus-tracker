@@ -224,7 +224,7 @@ CREATE TABLE app_sessions (
 
 The easiest way to run Nexus Tracker is to download the pre-built Windows executable — no Python installation required.
 
-1. Go to the [Releases](https://github.com/OmarKamal-Dev/nexus-tracker/releases) page.
+1. Go to the [Releases](https://github.com/nexus-dev-team/nexus-tracker/releases) page.
 2. Download the latest `NexusTracker.exe`.
 3. Run it — the app sets itself up automatically on first launch (database, logs, and settings).
 
