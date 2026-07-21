@@ -23,7 +23,7 @@ Nexus Tracker runs quietly in your system tray, silently watching which applicat
 ## 📖 Table of Contents
 
 - [Features](#-features)
-- [Screenshots / Layout](#-layout)
+- [Screenshots / Layout](#-screenshots)
 - [Tech Stack](#-tech-stack)
 - [Architecture](#-architecture)
 - [Project Structure](#-project-structure)
@@ -123,7 +123,7 @@ Nexus Tracker runs quietly in your system tray, silently watching which applicat
 | Active-window detection | [pywinctl](https://github.com/Kalmat/PyWinCtl) + [psutil](https://github.com/giampaolo/psutil) |
 | Idle detection | Windows API (`ctypes` + `user32`/`kernel32`) |
 | Icon extraction | Win32 GDI API (`pywin32`) |
-| Image processing | [Pillow](https://python-pillow.org/) |
+| Image processing | [Pillow](https://github.com/python-pillow/Pillow) |
 | Persistence | SQLite (`sqlite3`, WAL mode) |
 | Autostart | Windows Registry (`winreg`) |
 
